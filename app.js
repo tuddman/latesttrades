@@ -61,6 +61,14 @@ app.get('/bitstamp', function(req, res) {
 // MT GOX
 
 
+app.get('/mtgox', function(req, res) {
+    
+    // TODO: get mt gox as trades...
+
+      res.send(trades.slice(0,10));  
+        
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

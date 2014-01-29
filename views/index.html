@@ -83,48 +83,7 @@
 							Approved
 						</td>
 					</tr>
-					<tr class="success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
+
 				</tbody>
 			</table>
 		</div>
@@ -178,48 +137,6 @@
 							Approved
 						</td>
 					</tr>
-					<tr class="success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -271,52 +188,49 @@
 							Approved
 						</td>
 					</tr>
-					<tr class="success">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-					</tr>
-					<tr class="danger">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
+
+mt gox:
+<div id="mtgox"></div>
+
+bitstamp:
+<div id="bitstamp"></div>
+
 </body>
+
+<script>
+
+    			$.ajax({
+				url: "https://data.mtgox.com/api/1/BTCUSD/trades?raw",
+				type: 'GET',
+				crossDomain: true,
+				dataType: 'json',
+				success:
+				function(data) {
+                      var trades = [];
+                    data = data.slice(0,10);
+                      $.each( data, function( key, val ) {
+                        trades.push( "<li id='" + key + "'>" + JSON.stringify(val) + "</li>" );
+                      });
+
+                      $( "<ul/>", {
+                        "class": "my-new-list",
+                        html: trades.join( "" )
+                      }).appendTo( "#mtgox" );                    
+                    
+					//$("#mtgox").html("$ " + data + " - mt gox");
+				//    console.log(data);
+                },
+                    error: function() { console.log('mt gox: -----'); },
+			});
+
+   
+
+</script>
+
+
 </html>
