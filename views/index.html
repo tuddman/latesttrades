@@ -214,7 +214,17 @@ bitstamp:
                       var trades = [];
                     data = data.slice(0,10);
                       $.each( data, function( key, val ) {
-                        trades.push( "<li id='" + key + "'>" + JSON.stringify(val) + "</li>" );
+                    var date = data[key].date;
+                    var qnty = data[key].amount;
+                    var price = data[key].price;
+
+                    var tradeString = 
+                    "<td>" + JSON.stringify(date) + "</td>" + 
+                    "<td>" + JSON.stringify(qnty) + "</td>"  +
+                    "<td>" + JSON.stringify(price) + "</td>" +
+                    "<td>" + "mt gox" + "</td>";
+                    trades.push (tradeString);
+                    
                       });
 
                       $( "<ul/>", {
@@ -222,7 +232,6 @@ bitstamp:
                         html: trades.join( "" )
                       }).appendTo( "#mtgox" );                    
                     
-					//$("#mtgox").html("$ " + data + " - mt gox");
 				//    console.log(data);
                 },
                     error: function() { console.log('mt gox: -----'); },
