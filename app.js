@@ -65,7 +65,7 @@ app.get('/mtgox', function(req, res) {
     
     // TODO: get mt gox as trades...
 
-      res.send(trades.slice(0,10));  
+    //  res.send(trades.slice(0,10));  
         
 });
 
