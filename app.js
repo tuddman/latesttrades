@@ -41,6 +41,27 @@ app.get('/', function(req, res) {
 });
 
 
+// BITSTAMP
+
+
+var Bitstamp = require('bitstamp');
+var bitstamp = new Bitstamp;
+
+
+app.get('/bitstamp', function(req, res) {
+    
+    bitstamp.transactions(function(err, trades) {
+      res.send(trades.slice(0,10));  
+    });
+    
+});
+
+
+
+// MT GOX
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
